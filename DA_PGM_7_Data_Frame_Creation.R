@@ -15,3 +15,6 @@ Name <- c('Ram','Shyam','Sam')
 Age <- c(15,20,16)
 Mark <- c(100,90,87)
 df2 <- data.frame(Name, Age, Mark)
+
+# Gives statistical summary of data frame, analogous to df.info() in Python
+summary(df) 
