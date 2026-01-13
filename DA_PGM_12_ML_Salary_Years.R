@@ -1,4 +1,5 @@
 library(caTools)
+library(ggplot2)
 data <- data.frame(
   Years_Exp = c(1.1, 1.3, 1.5, 10.3, 10.5, 2.0, 2.2, 2.9, 3.0, 3.2, 3.2, 3.7, 
                       3.9, 4.0, 4.0, 4.1, 4.5, 4.9, 5.1, 5.3, 5.9, 6.0, 6.8, 7.1, 
@@ -32,6 +33,7 @@ test_data = subset(data, split == FALSE)
 
 lm_r = lm(formula = Salary ~ Years_Exp, data=training_set)
 
-summary(lm_r)
-# This function summary(model_variable), provides summary of the ML mode
-# that is fit
+ggplot() + geom_point(aes(x=training_set$Years_Exp, y= training_set$Salary), color='red')+
+  geom_line(aes(x=training_set$Years_Exp, y= predict(lm_r, newdata= training_set)), color='blue')+
+  ggtitle('Salary vs Experience(Training Set)') +
+  xlab('Years of Experience') + ylab("Salary")
