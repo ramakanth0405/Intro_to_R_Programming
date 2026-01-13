@@ -31,3 +31,7 @@ test_data = subset(data, split == FALSE)
 # (depedent ~ independent)
 
 lm_r = lm(formula = Salary ~ Years_Exp, data=training_set)
+
+summary(lm_r)
+# This function summary(model_variable), provides summary of the ML mode
+# that is fit
