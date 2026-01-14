@@ -33,6 +33,11 @@ test_data = subset(data, split == FALSE)
 
 lm_r = lm(formula = Salary ~ Years_Exp, data=training_set)
 
+# FUNCTION: summary(model_variable)
+# Use: summary function provides summary of data fit in the machine learning model
+summary(lm_r)
+# NOTE: The Residuals must be near to zero for good results
+
 # Training Set Visualization
 ggplot() + geom_point(aes(x=training_set$Years_Exp, y= training_set$Salary), color='red')+
   geom_line(aes(x=training_set$Years_Exp, y= predict(lm_r, newdata= training_set)), color='blue')+
@@ -42,5 +47,7 @@ ggplot() + geom_point(aes(x=training_set$Years_Exp, y= training_set$Salary), col
 # Test Set Visulization
 ggplot() + geom_point(aes(x=test_data$Years_Exp, y=test_data$Salary), color = 'red') +
   geom_line(aes(x=test_data$Years_Exp, y= predict(lm_r, newdata=test_data)), color='blue') +
-  ggtitle('Salary vs Exprience(Test_Set') +
+  ggtitle('Salary vs Exprience(Test_Set)') +
   xlab('Years of Experience') + ylab('Salary')
+
+# FUNCTION: predict
