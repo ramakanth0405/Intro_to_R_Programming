@@ -33,7 +33,14 @@ test_data = subset(data, split == FALSE)
 
 lm_r = lm(formula = Salary ~ Years_Exp, data=training_set)
 
+# Training Set Visualization
 ggplot() + geom_point(aes(x=training_set$Years_Exp, y= training_set$Salary), color='red')+
   geom_line(aes(x=training_set$Years_Exp, y= predict(lm_r, newdata= training_set)), color='blue')+
   ggtitle('Salary vs Experience(Training Set)') +
   xlab('Years of Experience') + ylab("Salary")
+
+# Test Set Visulization
+ggplot() + geom_point(aes(x=test_data$Years_Exp, y=test_data$Salary), color = 'red') +
+  geom_line(aes(x=test_data$Years_Exp, y= predict(lm_r, newdata=test_data)), color='blue') +
+  ggtitle('Salary vs Exprience(Test_Set') +
+  xlab('Years of Experience') + ylab('Salary')
