@@ -1,3 +1,4 @@
 R1_venv/
 .RData
 .Rhistory
+.DS_Store
