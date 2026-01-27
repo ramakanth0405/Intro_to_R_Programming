@@ -21,3 +21,7 @@ tree_model <- rpart(Species~.,
 rpart.plot(tree_model, box.palette='auto', nn=TRUE)
 # box.palette: Used to provide color to nodes
 # nn : node number
+
+# Predictions and Evaluations
+predictions <- predict (tree_model, test_data, type = 'class')
+confusionMatrix(predictions, test_data$Species)
