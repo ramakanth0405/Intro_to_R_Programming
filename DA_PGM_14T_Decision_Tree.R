@@ -30,7 +30,17 @@ printcp(tree_model)
 
 # To find optimal cp level
 optimal_cp <- tree_model$cptable[which.min(tree_model$cptable[,'xerror']), 'CP']
+# xerror: cross validation erro
 
 # Using Optimal cp to prune decision tree
 pruned_tree <- prune(tree_model, cp= optimal_cp)
 rpart.plot(pruned_tree)
+
+# Tuning Hyperparameters
+control <- trainControl(method = 'cv', number=10) # 10 Fold Cross-Validation
+tuned_tree <- train(Species~.,
+                    data=iris,
+                    method = 'rpart',
+                    trControl = control,
+                    tuneGrid = expand.grid(cp = seq(0.01, 0.1, 0.01)))
+print(tuned_tree)
