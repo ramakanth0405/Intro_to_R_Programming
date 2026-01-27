@@ -16,7 +16,8 @@ tree_model <- rpart(Species~.,
                     data = train_data,
                     method = 'class',
                     control = rpart.control(minsplit = 10, cp = 0.01)) # For Classification
-
+# cp: complexity parameter used to control complexity of tree, by adding penalty
+# This reduces overfitting and underfitting if used properly
 # Visualizing Decision Tree
 rpart.plot(tree_model, box.palette='auto', nn=TRUE)
 # box.palette: Used to provide color to nodes
@@ -25,3 +26,11 @@ rpart.plot(tree_model, box.palette='auto', nn=TRUE)
 # Predictions and Evaluations
 predictions <- predict (tree_model, test_data, type = 'class')
 confusionMatrix(predictions, test_data$Species)
+printcp(tree_model)
+
+# To find optimal cp level
+optimal_cp <- tree_model$cptable[which.min(tree_model$cptable[,'xerror']), 'CP']
+
+# Using Optimal cp to prune decision tree
+pruned_tree <- prune(tree_model, cp= optimal_cp)
+rpart.plot(pruned_tree)
