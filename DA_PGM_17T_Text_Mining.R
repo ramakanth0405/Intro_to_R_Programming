@@ -12,3 +12,18 @@ text_data <- tibble(
            "Text mining with tidytext is fun and insightful.")
 )
 print(text_data)
+
+# Tokenize the text
+tokens <- text_data %>% 
+  unnest_tokens(word, text)
+
+# View the tokens
+print(tokens)
+
+#Remove stopwords
+data('stop_words')
+clean_tokens <- tokens %>% 
+  anti_join(stop_words, by = 'word')
+
+# View cleaned tokens
+print(clean_tokens)
