@@ -1,7 +1,11 @@
+# Classification Model Evaluated using K Fold
+
 library(ISLR)
 library(caret)
 library(randomForest)
 library(tidyverse)
+library(lattice)
+
 
 data('Smarket')
 dataset <- na.omit(Smarket)
@@ -18,3 +22,5 @@ model_rf <- train(
   method = 'rf',
   trControl = train_control
 )
+
+print(model_rf)
