@@ -1,3 +1,5 @@
+# Simple Linear Regression using lm() and mtcars dataset
+
 data(mtcars)
 model <- lm(mpg~wt, data = mtcars)
 summary(model)
